@@ -1,238 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Retatrutide Comparison</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Yelp-Inspired Styles -->
-  <style>
-    body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      background: #faf8f6;
-      margin: 0;
-      color: #333;
-    }
-    nav {
-      background: #d32323;
-      padding: 0 32px;
-      display: flex;
-      align-items: center;
-      height: 60px;
-      box-shadow: 0 2px 8px rgba(30,30,30,0.04);
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 20px 0 0;
-      font-weight: 600;
-      font-size: 1.1em;
-      transition: color 0.2s;
-    }
-    nav a:last-child {
-      margin-right: 0;
-    }
-    nav a:hover {
-      color: #ffd700;
-    }
-
-    /* Yelp-style search box container below nav */
-    .search-hero {
-      background:#faf8f6;
-      padding:30px 0 10px 0;
-    }
-    .search-bar-wrap {
-      max-width:900px;
-      margin:0 auto;
-      box-shadow:none;
-      padding:0;
-    }
-    .search-bar-form {
-      display:flex;
-      gap:10px;
-    }
-    .search-bar-input {
-      flex:1;
-      padding:12px 18px;
-      border: 1px solid #d4d4d4;
-      border-radius:6px;
-      font-size:1em;
-    }
-    .search-bar-btn {
-      background:#d32323;
-      color:#fff;
-      font-weight:bold;
-      border:none;
-      padding:12px 24px;
-      border-radius:6px;
-      cursor:pointer;
-      transition:background 0.2s;
-    }
-    .container {
-      max-width: 900px;
-      margin: 32px auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 16px rgba(30,30,30,0.06);
-      padding: 32px 24px;
-    }
-    h2 {
-      font-size: 2em;
-      margin-bottom: 24px;
-      color: #d32323;
-      letter-spacing: -1.5px;
-      font-weight: bold;
-    }
-    #compareTable {
-      margin-top: 20px;
-      border: none;
-      width: 100%;
-      background: #faf8f6;
-      box-shadow: 0 1px 8px rgba(0,0,0,0.04);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    #compareTable thead tr {
-      background: #333;
-      color: #fff;
-    }
-    #compareTable th, #compareTable td {
-      padding: 16px 20px;
-      text-align: left;
-      font-size: 1.03em;
-    }
-    #compareTable tbody tr {
-      border-bottom: 1px solid #eee;
-      transition: background 0.15s;
-    }
-    #compareTable tbody tr:hover {
-      background: #fff0ea;
-    }
-    #sortSelect {
-      padding: 10px 18px;
-      border-radius: 6px;
-      border: 1px solid #d4d4d4;
-      font-size: 1em;
-    }
-    @media (max-width: 600px) {
-      .container { padding: 12px 4px; }
-      nav { flex-direction: column; align-items: flex-start; height: auto; }
-      nav a { margin: 0 12px 10px 0; font-size: 1em; }
-      h2 { font-size: 1.3em; }
-      #compareTable th, #compareTable td { padding: 8px; }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <title>Peptide Price Comparison</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-  <!-- Nav -->
-  <nav>
-    <a href="#products">Products</a>
-    <a href="#features">Why Us</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <a href="#compare">Compare</a>
-  </nav>
-
-  <!-- Yelp-style search bar under nav -->
-  <div class="search-hero">
-    <div class="search-bar-wrap">
-      <form class="search-bar-form" action="#" method="get">
-        <input class="search-bar-input" type="text" placeholder="Search vendors or products..." name="search">
-        <button class="search-bar-btn" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Compare section -->
-  <section id="compare">
+  <div id="navbar-container"></div>
+  <div id="peptide-menu-container"></div>
+  <main>
     <div class="container">
-      <h2>Compare Retatrutide Prices</h2>
-      <label for="sortSelect" style="display:block;margin-bottom:10px;">Sort by:</label>
-      <select id="sortSelect" style="padding:8px 16px;margin-bottom:20px;">
+      <h2 id="peptideHeader">Compare Peptide Prices</h2>
+      <label for="sortSelect">Sort by:</label>
+      <select id="sortSelect">
         <option value="high">Highest Price</option>
         <option value="low">Lowest Price</option>
       </select>
       <div style="overflow-x:auto;">
-        <table id="compareTable" style="width:100%;border-collapse:collapse;">
+        <table id="compareTable">
           <thead>
-            <tr style="background:#4A9FBC;color:white;">
-              <th style="padding:12px;">Vendor</th>
-              <th style="padding:12px;">Price (USD)</th>
-              <th style="padding:12px;">Link</th>
+            <tr>
+              <th>Vendor</th>
+              <th>Price (USD)</th>
+              <th>Link</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>BulkGLP</td>
-              <td data-price="350">$350</td>
-              <td><a href="https://bulkglp.com/product/retatrutide-ly3437943-glp1r-glp3/" target="_blank">Visit</a></td>
-            </tr>
-            <tr>
-              <td>Nextech Labs</td>
-              <td data-price="379">$379</td>
-              <td><a href="https://nextechlaboratories.com/product/reta-10mg/" target="_blank">Visit</a></td>
-            </tr>
-            <tr>
-              <td>KiloBio</td>
-              <td data-price="340">$340</td>
-              <td><a href="https://www.kilobio.com/retatrutide-peptide-suppliers-5-trusted-sources-vetted-by-researchers/" target="_blank">Visit</a></td>
-            </tr>
-            <tr>
-              <td>Pura Peptides</td>
-              <td data-price="455">$455</td>
-              <td><a href="https://purapeptides.com/product/reta-10/" target="_blank">Visit</a></td>
-            </tr>
-            <tr>
-              <td>Reta One Labs</td>
-              <td data-price="315">$315</td>
-              <td><a href="https://retaonelabs.com/" target="_blank">Visit</a></td>
-            </tr>
-            <tr>
-              <td>PeptideDeck</td>
-              <td data-price="375">$375</td>
-              <td><a href="https://www.peptidedeck.com/peptides/how-to-get-retatrutide-2026" target="_blank">Visit</a></td>
-            </tr>
-            <tr>
-              <td>BioTechPeptides</td>
-              <td data-price="379">$379</td>
-              <td><a href="https://www.kilobio.com/retatrutide-peptide-suppliers-5-trusted-sources-vetted-by-researchers/" target="_blank">Visit</a></td>
-            </tr>
-            <tr>
-              <td>PeptideScience</td>
-              <td data-price="360">$360</td>
-              <td><a href="https://www.kilobio.com/retatrutide-peptide-suppliers-5-trusted-sources-vetted-by-researchers/" target="_blank">Visit</a></td>
-            </tr>
-            <tr>
-              <td>PurePeptidesLab</td>
-              <td data-price="390">$390</td>
-              <td><a href="https://www.kilobio.com/retatrutide-peptide-suppliers-5-trusted-sources-vetted-by-researchers/" target="_blank">Visit</a></td>
-            </tr>
-            <tr>
-              <td>Elite Molecules</td>
-              <td data-price="390">$390</td>
-              <td><a href="https://www.kilobio.com/retatrutide-peptide-suppliers-5-trusted-sources-vetted-by-researchers/" target="_blank">Visit</a></td>
-            </tr>
+            <!-- Filled by JS -->
           </tbody>
         </table>
       </div>
     </div>
-  </section>
-
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const sortSelect = document.getElementById('sortSelect');
-    const table = document.getElementById('compareTable').getElementsByTagName('tbody')[0];
-    sortSelect.addEventListener('change', function() {
-      const rows = Array.from(table.rows);
-      const dir = this.value === 'high' ? -1 : 1;
-      rows.sort((a, b) => {
-        const aPrice = parseFloat(a.cells[1].getAttribute('data-price'));
-        const bPrice = parseFloat(b.cells[1].getAttribute('data-price'));
-        return (aPrice - bPrice) * dir;
-      });
-      rows.forEach(row => table.appendChild(row));
-    });
-  });
-  </script>
+  </main>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
